@@ -1,13 +1,24 @@
 import { useState } from 'react'
 import './App.css'
+import { Route, Routes } from 'react-router'
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import Result from './pages/Result'
+import Buycredits from './pages/Buycredits'
+import Footer from './components/Footer'
 
 function App() {
 
   return (
     <>
-       <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+    <Navbar/>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/result" element={<Result />} />
+      <Route path="/buycredits" element={<Buycredits />} />
+    </Routes>
+    <Footer/>
+  
     </>
   )
 }

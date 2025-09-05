@@ -7,11 +7,13 @@ import Result from './pages/Result'
 import Buycredits from './pages/Buycredits'
 import Footer from './components/Footer'
 
+
 function App() {
 
   return (
     <>
     <Navbar/>
+    
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/result" element={<Result />} />

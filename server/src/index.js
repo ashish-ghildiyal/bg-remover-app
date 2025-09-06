@@ -14,11 +14,8 @@ app.get('/', (req, res) => {
         res.send('API is running');
 })
 
-connectDB().then(() => {
-    app.listen(port, () => {
+connectDB();
+app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-});
-}).catch((error) => {
-    console.log(error);
-});
+})
 

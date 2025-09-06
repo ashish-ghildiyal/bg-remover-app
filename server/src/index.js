@@ -11,7 +11,7 @@ dotenv.config({
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-        res.send('API is running');
+        res.send('API is working');
 })
 
 connectDB();

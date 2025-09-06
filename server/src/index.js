@@ -6,7 +6,13 @@ dotenv.config({
     path: 'src/config/.env'
 });
 
+
+
 const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+        res.send('API is running');
+})
 
 connectDB().then(() => {
     app.listen(port, () => {

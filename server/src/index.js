@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from "dotenv";
 import connectDB from "./db/db.js";
 import userRouter from "./routes/user.route.js";
+import imageRouter from './routes/image.route.js';
 
 dotenv.config({
     path: 'src/config/.env'
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/user', userRouter)
+app.use('/api/image', imageRouter)
 
 connectDB();
 app.listen(port, () => {

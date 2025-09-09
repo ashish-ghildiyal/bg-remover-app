@@ -15,12 +15,12 @@ export const bgRemoverImage = async (req, res) => {
         const imageFile = fs.createReadStream(imagePath);
 
         const formData = new FormData();
-        formData.append('image', imageFile, {
+        formData.append('image_file', imageFile, {
             filename: req.file.originalname,
             contentType: req.file.mimetype,
         });
 
-        const { data } = await axios.post(
+        const response = await axios.post(
             'https://clipdrop-api.co/remove-background/v1',
             formData,
             {
@@ -33,11 +33,21 @@ export const bgRemoverImage = async (req, res) => {
             }
         );
 
-        if (!data || data.error) {
-            return res.status(400).json({ success: false, message: 'ClipDrop API error', details: data });
-        }
+           // ✅ Handle error response properly
+    if (
+      response.headers["content-type"] &&
+      response.headers["content-type"].includes("application/json")
+    ) {
+      const errorJson = JSON.parse(response.data.toString("utf8"));
+      console.error("ClipDrop API error:", errorJson);
+      return res.status(400).json({
+        success: false,
+        message: "ClipDrop API error",
+        details: errorJson,
+      });
+    }
 
-        const base64Image = Buffer.from(data, 'binary').toString('base64');
+        const base64Image = Buffer.from(response.data, 'binary').toString('base64');
         const resultImage = `data:${req.file.mimetype};base64,${base64Image}`;
         res.json({
             success: true,

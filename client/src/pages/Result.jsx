@@ -1,12 +1,11 @@
 import React from 'react'
 import { assets } from '../assets/assets'
 import { useContext } from 'react'
-import { AppContext } from '../context/AppContex'
+import { AppContext } from '../context/appContext'
 
 const Result = () => {
-   const { image, resultImg } = useContext(AppContext);
+   const { image, resultImg , bgRemover} = useContext(AppContext);
    const img = image ? URL.createObjectURL(image) : '';
-   console.log("ikdkdk", img)
    
     console.log('result', image)
   return (
@@ -30,9 +29,14 @@ const Result = () => {
             { resultImg &&
             <div className='flex justify-center sm:justify-end items-center
              flex-wrap gap-4 mt-6'>
-                <button className='
+                 <input type="file" onChange={(e)=>bgRemover(e.target.files[0])} accept="image/*" id="upload2" hidden/>
+                    <label
+                    className="className=
                 gap-3 px-8 py-3.5 rounded-full  cursor-pointer text-violet-600 border border-violet-600
-                 hover:scale-105 transition-all duration-700'>Try another image</button>
+                 hover:scale-105 transition-all duration-700"
+                    htmlFor="upload2"
+                    >Try another image</label>
+                
                  
                 <a href={resultImg} download className='inline-flex gap-3 px-8 py-3.5 rounded-full  cursor-pointer bg-gradient-to-r from-violet-600 to-fuchsia-500 
                  hover:scale-105 transition-all duration-700 text-white'>Download image</a>

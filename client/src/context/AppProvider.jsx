@@ -1,4 +1,4 @@
-import { AppContext } from "./AppContex";
+import { AppContext } from "./AppContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from 'axios';
